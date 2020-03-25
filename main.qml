@@ -34,6 +34,7 @@ Window {
         width: 371
         height: 40
         model: serialPortInfo.baudrates
+        currentIndex: 12 // 9600
     }
 
     Text {
