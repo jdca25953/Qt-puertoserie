@@ -27,10 +27,19 @@ Window {
         onPressedChanged: model = serialPortInfo.availablePorts
     }
 
+    ComboBox {
+        id: baudRate
+        x: 10
+        y: 126
+        width: 371
+        height: 40
+        model: serialPortInfo.baudrates
+    }
+
     Text {
         id: estado
         text: qsTr("desconectado")
-        x: 483
+        x: 471
         y: 115
         function cambiar() {
             text = qsTr("conectado");
@@ -42,23 +51,14 @@ Window {
         width: 371
         height: 200
         x: 10
-        y: 156
-        color: "gray"
+        y: 178
+        color: "#babdb6"
 
         Text {
             id: mensajes
             text: qsTr("text")
             x: 10
         }
-    }
-
-    ComboBox {
-        id: baudRate
-        x: 10
-        y: 103
-        width: 371
-        height: 40
-        model: ["prueba1","prueba2","prueba3"]
     }
 
     Button {
@@ -91,6 +91,24 @@ Window {
         y: 384
         width: 85
         height: 38
+    }
+
+    Text {
+        id: element
+        x: 10
+        y: 29
+        width: 115
+        height: 15
+        text: qsTr("SerialPorts")
+        font.pixelSize: 12
+    }
+
+    Text {
+        id: element1
+        x: 10
+        y: 105
+        text: qsTr("BaudRates")
+        font.pixelSize: 12
     }
 
 
