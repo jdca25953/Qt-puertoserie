@@ -1,39 +1,23 @@
 #include "puertoserie.h"
 
-SerialPortInfo::SerialPortInfo(QObject *parent):
-    QObject(parent), QSerialPortInfo()
+SerialPort::SerialPort(QObject *parent):
+    QObject(parent)
 {
-   //intento de hacer un Qtimer
 
-   m_timer = new QTimer(this);
-   connect(m_timer, SIGNAL(timeout()),this,SLOT(onTimeOut()));
-
-
-   //emit availablePortsChanged();
 }
-
-SerialPortInfo::~SerialPortInfo()
-{
-}
-
-//crea la lista de los nombres de los puertos
-
-QStringList	SerialPortInfo::availablePorts(){
-    QStringList r = QStringList();
-    foreach (const QSerialPortInfo &port, QSerialPortInfo::availablePorts()){
-        QString rt = QString(port.portName());
-        r.append(rt);
-    }
-    return r;
-}
-
-//que hacer cuando se acabe el tiempo, yo creo que actualiza asi
-
-void SerialPortInfo::onTimeOut()
-{
-   availablePorts();
-}
-//control de inicio desde la app
-void SerialPortInfo::inicia(){
-    m_timer->start(3000);
-}
+/*
+ * portName: nombre del puerto serie del sistema
+ * baudRate: velocidad en bits de conexión al puerto serie
+ * eol: carácter de salto del línea
+ */
+void SerialPort::setup(const QString portName, int baudRate, QString eol){
+     m_serial.setPortName(portName);
+     m_serial.setBaudRate(baudRate);
+     serialEOL = eol;
+ }
+bool SerialPort::open(QFile::OpenMode mode){
+     return m_serial.open(mode);
+ }
+void SerialPort::close(){
+     m_serial.close();
+ }

@@ -16,7 +16,8 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        puertoserie.cpp
+        puertoserie.cpp \
+        puertoserieinfo.cpp
 
 RESOURCES += qml.qrc
 
