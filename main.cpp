@@ -23,8 +23,6 @@ int main(int argc, char *argv[])
 
     //revisar, funciona
     SerialPortInfo serialPortInfo;
-    //inicio del timer
-    serialPortInfo.inicia();
     engine.rootContext()->setContextProperty("serialPortInfo", &serialPortInfo);
 
     engine.load(url);

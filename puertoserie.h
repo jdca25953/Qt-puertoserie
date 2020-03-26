@@ -5,7 +5,6 @@
 #include <QQuickItem>
 #include <QtSerialPort/QSerialPortInfo>
 #include <QtSerialPort/QSerialPort>
-#include <QTimer>
 
 class SerialPortInfo : public QObject, public QSerialPortInfo
 {
@@ -18,19 +17,11 @@ class SerialPortInfo : public QObject, public QSerialPortInfo
 public:
     SerialPortInfo(QObject *parent = 0);
     ~SerialPortInfo();
-    void inicia();
     QStringList baudrates();
+    QStringList availablePorts();
 signals:
     void availablePortsChanged();
-    //hago un slot para ontimeout
-public slots:
-    void onTimeOut();
-    //puntero de QTimer
-private:
-    QTimer *m_timer;
 
-    QStringList availablePorts();
-    //QString portName();
 };
 
 class SerialPort : QObject
