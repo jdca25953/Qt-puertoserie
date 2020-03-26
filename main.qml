@@ -55,6 +55,7 @@ Window {
             console.log("vamos a ello!");
             if(estoyConectado.checked){
                 console.log("a desconectar");
+                timerLectura.stop();
                 serialPort.close();
                 // toggle
                 estoyConectado.checked = !estoyConectado.checked
@@ -67,6 +68,7 @@ Window {
                 // serialPort.setOutput(mensajes);
                 console.log(serialPort.open());
                 console.log("en principio ya esta");
+                timerLectura.start();
                 // toggle
                 estoyConectado.checked = !estoyConectado.checked
                 conexion.text = "Desconectar"
@@ -140,5 +142,19 @@ Window {
         z: 0
     }
 
-
+    Item {
+        Timer {
+            id: timerLectura
+            interval: 100
+            running: false
+            repeat: true
+            onTriggered: function() {
+                var texto = serialPort.read();
+                console.log(texto);
+                if(texto){
+                    mensajes.text += texto;
+                }
+            }
+        }
+    }
 }

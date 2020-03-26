@@ -3,7 +3,6 @@
 SerialPort::SerialPort(QObject *parent):
     QObject(parent)
 {
-
 }
 /*
  * portName: nombre del puerto serie del sistema
@@ -23,3 +22,10 @@ bool SerialPort::open(QFile::OpenMode mode){
 void SerialPort::close(){
      m_serial.close();
  }
+
+QString SerialPort::read(){
+    QByteArray readdata = QByteArray();
+    readdata = m_serial.readAll();
+    QString output = QString::fromLocal8Bit(readdata);
+    return output;
+}
