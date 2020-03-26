@@ -25,6 +25,7 @@ int main(int argc, char *argv[])
     SerialPortInfo serialPortInfo;
     SerialPort serialPort;
     engine.rootContext()->setContextProperty("serialPortInfo", &serialPortInfo);
+    engine.rootContext()->setContextProperty("serialPort", &serialPort);
 
     engine.load(url);
 

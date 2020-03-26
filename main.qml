@@ -39,12 +39,9 @@ Window {
 
     Text {
         id: estado
-        text: qsTr("desconectado")
+        text: qsTr("Desconectado")
         x: 471
         y: 115
-        function cambiar() {
-            text = qsTr("conectado");
-        }
     }
 
     Rectangle {
@@ -68,11 +65,25 @@ Window {
         y: 50
         width: 149
         height: 40
-        text: qsTr("conectar")
-        function cambiar() {
-            text = qsTr("desconectar");
+        text: qsTr("Conectar")
+        onClicked: function() {
+            if(estoyConectado){
+                serialPort.close();
+                conexion.text = "Conectar"
+                estado.text = "Desconectado"
+            }else{
+                serialPort.setup(puertoserie,baudRate)
+                serialPort.open();
+                conexion.text = "Desconectar"
+                estado.text = "Conectado"
+            }
         }
-        onClicked: cambiar(conexion & estado);
+    }
+
+    CheckBox {
+        id: estoyConectado
+        checked: false
+        visible: false
     }
 
     TextInput {
