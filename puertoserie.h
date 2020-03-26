@@ -34,6 +34,7 @@ public:
     Q_INVOKABLE void setup(const QString portName, int baudRate, QString eol=QString("\n"));
     Q_INVOKABLE bool open(QFile::OpenMode mode = QIODevice::ReadWrite);
     Q_INVOKABLE void close();
+    Q_INVOKABLE int read(char )
 
 private:
     QString	serialEOL;

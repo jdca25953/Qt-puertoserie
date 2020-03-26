@@ -44,21 +44,6 @@ Window {
         y: 115
     }
 
-    Rectangle {
-        id: cuadromensajes
-        width: 371
-        height: 200
-        x: 10
-        y: 178
-        color: "#babdb6"
-
-        Text {
-            id: mensajes
-            text: qsTr("text")
-            x: 10
-        }
-    }
-
     Button {
         id: conexion
         x: 444
@@ -77,7 +62,9 @@ Window {
                 estado.text = "Desconectado"
             }else{
                 console.log("a conectar");
+                mensajes.text = ""
                 serialPort.setup(puertoserie.currentValue, baudRate.currentValue);
+                // serialPort.setOutput(mensajes);
                 console.log(serialPort.open());
                 console.log("en principio ya esta");
                 // toggle
@@ -129,6 +116,28 @@ Window {
         y: 105
         text: qsTr("BaudRates")
         font.pixelSize: 12
+    }
+
+    TextArea {
+        id: mensajes
+        x: 10
+        y: 178
+        width: 371
+        height: 200
+        text: qsTr("Esperando datos...")
+        z: 1
+        font.pointSize: 9
+        font.family: "Courier"
+    }
+
+    Rectangle {
+        id: rectangle1
+        x: 10
+        y: 178
+        width: 371
+        height: 200
+        color: "#bbbbbb"
+        z: 0
     }
 
 
