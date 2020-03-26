@@ -10,7 +10,7 @@ class SerialPortInfo : public QObject, public QSerialPortInfo
 {
     Q_OBJECT
     Q_PROPERTY(QStringList baudrates READ baudrates CONSTANT)
-    Q_PROPERTY(QStringList availablePorts READ availablePorts NOTIFY availablePortsChanged)
+    Q_PROPERTY(QStringList availablePorts READ availablePorts)
     Q_PROPERTY(QString portName READ portName)
 
 
@@ -19,9 +19,6 @@ public:
     ~SerialPortInfo();
     QStringList baudrates();
     QStringList availablePorts();
-signals:
-    void availablePortsChanged();
-
 };
 
 class SerialPort : QObject
