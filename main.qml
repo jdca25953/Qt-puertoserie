@@ -67,13 +67,21 @@ Window {
         height: 40
         text: qsTr("Conectar")
         onClicked: function() {
-            if(estoyConectado){
+            console.log("vamos a ello!");
+            if(estoyConectado.checked){
+                console.log("a desconectar");
                 serialPort.close();
+                // toggle
+                estoyConectado.checked = !estoyConectado.checked
                 conexion.text = "Conectar"
                 estado.text = "Desconectado"
             }else{
-                serialPort.setup(puertoserie,baudRate)
-                serialPort.open();
+                console.log("a conectar");
+                serialPort.setup(puertoserie.currentValue, baudRate.currentValue);
+                console.log(serialPort.open());
+                console.log("en principio ya esta");
+                // toggle
+                estoyConectado.checked = !estoyConectado.checked
                 conexion.text = "Desconectar"
                 estado.text = "Conectado"
             }

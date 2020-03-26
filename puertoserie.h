@@ -23,6 +23,8 @@ public:
     QStringList availablePorts();
 };
 
+// -------------------------
+
 class SerialPort : public QObject
 {
     Q_OBJECT

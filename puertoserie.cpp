@@ -14,10 +14,12 @@ void SerialPort::setup(const QString portName, int baudRate, QString eol){
      m_serial.setPortName(portName);
      m_serial.setBaudRate(baudRate);
      serialEOL = eol;
- }
+}
+
 bool SerialPort::open(QFile::OpenMode mode){
-     return m_serial.open(mode);
- }
+    return m_serial.open(mode);
+}
+
 void SerialPort::close(){
      m_serial.close();
  }
