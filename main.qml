@@ -7,30 +7,35 @@ Window {
     width: 640
     height: 480
     title: qsTr("Serial Port")
-
-    Rectangle {
-        id: rectangle
+    Text {
+        id: tituloserialport
         x: 10
-        y: 384
-        width: 371
-        height: 38
-        color: "#d1fcff"
+        y: 29
+        width: 115
+        height: 15
+        text: qsTr("SerialPorts")
+        font.pixelSize: 12
     }
-
     ComboBox {
         id: puertoserie        
         model: serialPortInfo.availablePorts
+        anchors.top: tituloserialport.bottom
+        anchors.left: tituloserialport.left
         width: 371
         height: 40
-        x: 10
-        y: 50
         onPressedChanged: model = serialPortInfo.availablePorts
     }
-
+    Text {
+        id: titulobaudrate
+        x: 10
+        y: 105
+        text: qsTr("BaudRates")
+        font.pixelSize: 12
+    }
     ComboBox {
         id: baudRate
-        x: 10
-        y: 126
+        anchors.top: titulobaudrate.bottom
+        anchors.left: titulobaudrate.left
         width: 371
         height: 40
         model: serialPortInfo.baudrates
@@ -82,65 +87,54 @@ Window {
         checked: false
         visible: false
     }
-
-    TextInput {
-        id: entradamensaje
-        x: 10
+    Rectangle {
+        id: fondoentradamensaje
+        anchors.left: tituloserialport.left
         y: 384
         width: 371
         height: 38
-        text: qsTr("Text Input")
-        font.pixelSize: 12
+        color: "#d1fcff"
+        TextInput {
+            id: entradamensaje
+            anchors.fill: parent
+            text: qsTr("Text Input")
+            font.pixelSize: 12
+        }
     }
 
     Button {
         id: enviar
         text: qsTr("enviar")
-        x: 387
-        y: 384
+        anchors.left: fondoentradamensaje.right
+        anchors.top: fondoentradamensaje.top
         width: 85
         height: 38
     }
-
-    Text {
-        id: element
-        x: 10
-        y: 29
-        width: 115
-        height: 15
-        text: qsTr("SerialPorts")
-        font.pixelSize: 12
-    }
-
-    Text {
-        id: element1
-        x: 10
-        y: 105
-        text: qsTr("BaudRates")
-        font.pixelSize: 12
-    }
-
-    TextArea {
-        id: mensajes
+    ScrollView{
+        id: scroll
         x: 10
         y: 178
         width: 371
         height: 200
-        text: qsTr("Esperando datos...")
         z: 1
-        font.pointSize: 9
-        font.family: "Courier"
+        TextArea {
+            id: mensajes
+            anchors.fill: scroll
+            text: qsTr("Esperando datos...")
+            textFormat: Text.AutoText
+            font.pointSize: 9
+            font.family: "Courier"
+        }
+        Rectangle {
+            id: rectangle1
+            width: 371
+            height: 200
+            color: "#bbbbbb"
+            z: 0
+        }
     }
 
-    Rectangle {
-        id: rectangle1
-        x: 10
-        y: 178
-        width: 371
-        height: 200
-        color: "#bbbbbb"
-        z: 0
-    }
+
 
     Item {
         Timer {
@@ -154,7 +148,10 @@ Window {
                 if(texto){
                     mensajes.text += texto;
                 }
+                // console.log(serialPort.read());
             }
         }
     }
+
+
 }
