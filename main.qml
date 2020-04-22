@@ -120,6 +120,11 @@ Window {
         anchors.top: fondoentradamensaje.top
         width: 85
         height: 38
+        //click para escribir
+        onClicked: function(){
+            serialPort.write(entradamensaje.text)
+            console.log(entradamensaje.text)
+        }
     }
     Rectangle{
         id:fondomensajes

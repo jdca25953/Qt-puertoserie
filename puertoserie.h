@@ -35,6 +35,8 @@ public:
     Q_INVOKABLE bool open(QFile::OpenMode mode = QIODevice::ReadWrite);
     Q_INVOKABLE void close();
     Q_INVOKABLE QString read();
+    //nuevo, para escribir
+    Q_INVOKABLE void write(QString data);
 
 private:
     QString	serialEOL;

@@ -29,3 +29,8 @@ QString SerialPort::read(){
     QString output = QString::fromLocal8Bit(readdata);
     return output;
 }
+void SerialPort::write(QString data){
+    data = data + serialEOL;
+    QByteArray salida = data.toUtf8();
+    m_serial.write(salida);
+}
